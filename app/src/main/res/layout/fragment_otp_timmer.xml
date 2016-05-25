@@ -5,9 +5,20 @@
     tools:context="com.home.harsh.smartcash.OtpTimmer">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_otp_timmer" />
+        android:text="@string/hello_otp_timmer" />-->
+    <ProgressBar
+        android:id="@+id/barTimer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTimer"/>
 
 </FrameLayout>

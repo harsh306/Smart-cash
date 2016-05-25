@@ -6,12 +6,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 /**
@@ -33,7 +36,8 @@ public class OtpTimmer extends Fragment implements FragmentManager.OnBackStackCh
     private String mParam2;
     private View fview;
     private OnFragmentInteractionListener mListener;
-
+    ProgressBar barTimer;
+    TextView textTimer;
     public OtpTimmer() {
         // Required empty public constructor
     }
@@ -77,6 +81,9 @@ public class OtpTimmer extends Fragment implements FragmentManager.OnBackStackCh
         // Inflate the layout for this fragment
 
          fview=inflater.inflate(R.layout.fragment_otp_timmer, container, false);
+        barTimer=(ProgressBar)fview.findViewById(R.id.barTimer);
+        textTimer=(TextView)fview.findViewById(R.id.textTimer);
+        startTimer(1);
         return fview;
     }
 
@@ -112,7 +119,32 @@ public class OtpTimmer extends Fragment implements FragmentManager.OnBackStackCh
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(canback);
 
     }
+    CountDownTimer countDownTimer;
+    private void startTimer(final int minuti) {
+        countDownTimer = new CountDownTimer(60 * minuti * 1000, 500) {
+            // 500 means, onTick function will be called at every 500 milliseconds
 
+            @Override
+            public void onTick(long leftTimeInMilliseconds) {
+                long seconds = leftTimeInMilliseconds / 1000;
+                barTimer.setProgress((int)seconds);
+                textTimer.setText(String.format("%02d", seconds/60) + ":" + String.format("%02d", seconds%60));
+                // format the textview to show the easily readable format
+
+            }
+            @Override
+            public void onFinish() {
+                if(textTimer.getText().equals("00:00")){
+                    textTimer.setText("STOP");
+                }
+                else{
+                    textTimer.setText("2:00");
+                    barTimer.setProgress(60*minuti);
+                }
+            }
+        }.start();
+
+    }
     public boolean onSupportNavigateUp() {
         //This method is called when the up button is pressed. Just the pop back stack.
       //  getSupportFragmentManager().popBackStack();

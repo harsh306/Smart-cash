@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements OtpTimmer.OnFragm
         fragmentTransaction.commit();
         //fragmentTransaction.replace(R.id.fragment_container,otpTimmer);
         //fragmentTransaction.commit();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+       /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements OtpTimmer.OnFragm
 
 
 
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+                *//*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*//*
             }
-        });
+        });*/
 
     }
 
